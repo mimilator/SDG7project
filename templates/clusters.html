@@ -1,0 +1,196 @@
+{% extends "layout.html" %}
+
+{%block head%}
+
+<script>
+function showMap() {
+  selectedvalues = document.getElementById("options")
+ if (document.getElementById("nomap")==null){
+  mapdiv=document.getElementById("map")
+  if(selectedvalues.options[1].selected){
+
+      mapdiv.src = '/static/labels.html';
+ }
+ if(selectedvalues.options[2].selected){
+      mapdiv.src = '/static/electricity.html';
+ }
+ if(selectedvalues.options[3].selected){
+      mapdiv.src = '/static/cooking.html';
+ }
+ if(selectedvalues.options[4].selected){
+      mapdiv.src = '/static/renewables.html';
+ }
+
+ if(selectedvalues.options[5].selected){
+      mapdiv.src = '/static/intensity.html';
+ }
+}
+ else{
+  mapdiv=document.getElementById("nomap")
+
+  if(selectedvalues.options[1].selected){
+      mapdiv.id="map"
+      mapdiv.src = '/static/labels.html';
+
+  }
+  if(selectedvalues.options[2].selected){
+      mapdiv.id="map"
+      mapdiv.src = '/static/electricity.html';
+
+}
+  if(selectedvalues.options[3].selected){
+      mapdiv.id="map"
+      mapdiv.src = '/static/cooking.html';
+}
+
+if(selectedvalues.options[4].selected){
+    mapdiv.id="map"
+    mapdiv.src = '/static/renewables.html';
+}
+
+if(selectedvalues.options[5].selected){
+    mapdiv.id="map"
+    mapdiv.src = '/static/intensity.html';
+}
+ }
+}
+</script>
+{%endblock%}
+
+
+{%block main%}
+<div class="container greencont">
+        <p class="title">Clustered Countries</p>
+        <p class="text">Here you can see the results of clustering countries using k-means clustering on the data for countries.
+            The clustering is conducted using the latest data in the dataset and thus reflects the state from 2020.
+            This is done to ensure the clusters represent the latest state instead of the variation in development over time.
+            <br> <br>
+            <small>Countries not included due to differences between countries covered by data and countries covered by the map:
+                {% for element in missing%}
+                {%if element == last %}
+                {{element}}.
+                {%else%}
+                {{element}},
+                {%endif%}
+                {%endfor%}
+            </small>
+        </p>
+</div>
+
+
+<div class="container whitebrd">
+  <div class="title">
+    Choose what map to see:
+  </div>
+  <div class="container">
+    <select onchange= "showMap()" class="form-select form-select-lg mb-3" aria-label="Large select example" id="options">
+    <option selected>Open for selection</option>
+    <option>Map of the three clusters</option>
+    <option>Map on access to electricity</option>
+    <option >Map on access to clean energy for cooking</option>
+    <option >Map on renewable energy share in total energy consumption</option>
+    <option>Map on energy intensity level of primary energy</option>
+  </select>
+  <div class="container-fluid">
+    <center><iframe id="nomap" class="images"></iframe></center>
+  </div>
+</div>
+</div>
+
+<div class="container">
+<div class="row">
+    <div class="col-lg-4">
+      <div class="card" id="card1">
+        <div class="card-body">
+          <h5 class="card-title"><span class="highlight">High share of renewables</span>, small share of access to electricity</h5>
+          <p class="card-text overflow-scroll">
+            {% for key,value in cluster1.iterrows() %}
+            {%if value["Entity"] == cl1last %}
+            {{value["Entity"]}}.
+            {%else%}
+            {{value["Entity"]}},
+            {%endif%}
+            {%endfor%}
+          </p>
+
+        </div>
+        <div class="card-footer text-muted">
+            <strong>Total number of countries: </strong>{{len1}}
+          </div>
+      </div>
+    </div>
+    <div class="col-lg-4 ">
+      <div class="card" id="card2" >
+        <div class="card-body" >
+          <h5 class="card-title"><span class="highlight">Complete electricity access</span>, small share of renewables</h5>
+          <p class="card-text overflow-scroll">
+            {% for key,value in cluster2.iterrows() %}
+            {%if value["Entity"] == cl2last %}
+            {{value["Entity"]}}.
+            {%else%}
+            {{value["Entity"]}},
+            {%endif%}
+            {%endfor%}
+          </p>
+        </div>
+        <div class="card-footer text-muted">
+            <strong>Total number of countries: </strong>{{len2}}
+          </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card" id="card3" >
+        <div class="card-body" >
+          <h5 class="card-title"><span class="highlight">Not full electricity access</span>, middle high renewables share</h5>
+          <p class="card-text overflow-scroll">
+            {% for key,value in cluster3.iterrows() %}
+            {%if value["Entity"] == cl3last %}
+            {{value["Entity"]}}.
+            {%else%}
+            {{value["Entity"]}},
+            {%endif%}
+            {%endfor%}
+          </p>
+        </div>
+        <div class="card-footer text-muted">
+            <strong>Total number of countries: </strong>{{len3}}
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+    </div>
+    <div class="col-4"> <center><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#3b493a" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+    </svg></center>
+    </div>
+    <div class="col-4">
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <p> <center><h4>Means Group 1</h4></center>
+        {{means1|safe}}</p>
+    </div>
+    <div class="col-sm-4">
+      <p> <center><h4>Means Group 2</h4></center>
+        {{means2|safe}}</p>
+    </div>
+    <div class="col-sm-4">
+      <p> <center><h4>Means Group 3</h4></center>
+        {{means3|safe}}</p>
+    </div>
+  </div>
+</div>
+
+{%endblock%}

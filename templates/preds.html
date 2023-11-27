@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{%block main%}
+<div class="container greencont">
+        <p class="title">Forecast Developments Until 2030</p>
+        <div class="whitebackgrtext"><p class="text"> Below you can select a country and an indicator to see the forecast for. The forecasts are generated using an ARIMA model as a forecasting technique.
+            The parameters for the ARIMA model are chosen individually for each country. A serious limitation influencing the quality of predictions is the limited scope of observations available
+            which in turn impacts the amount of data used to train the model for the predictions. However, an individual approach rather than a general one applicable across
+            countries was prefered due to the big differences between countries.
+        </p>
+     </div>
+</div>
+
+<div class="container whitebrd">
+    <p class="title">Choose country and Indicator for the Forecast</p>
+
+    <form action="/preds" method="post">
+        <div class="row">
+            <div class="form-group col-lg-5">
+                <select class="form-control form-control-lg" aria-label="Large select example" name="country" required>
+                    <option selected>Select country here</option>
+                        {% for country in countries%}
+                    <option>{{country}}</option>
+                        {%endfor%}
+                </select>
+            </div>
+            <div class="form-group col-lg-5">
+                <select class="form-control form-control-lg" aria-label="Large select example" name="indicator" required>
+                    <option selected>Select indicator here</option>
+                        {% for indicator in indicators%}
+                    <option>{{indicator}}</option>
+                        {%endfor%}
+                </select>
+            </div>
+            <div class="form-group col-lg-2">
+                <button class="btn btn-lg" type="submit">Generate Graph</button>
+            </div>
+        </form>
+        </div>
+        {%if errormsg=="yes" %}
+        <div class="alert alert-danger" role="alert">
+            Please don't submit data you shouldn't be!
+          </div>
+         {% elif errormsg=="empty"%}
+         <div class="alert alert-primary" role="alert">
+            Please choose from the two menus!
+          </div>
+          {%endif%}
+
+          {%if plt1 != None%}
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="preds" src="data:image/png;base64,{{plt1}}" ></span>
+            </div>
+            <div class="col-sm-6">
+                <img class="preds" src="data:image/png;base64,{{plt2}}" >
+            </div>
+        </div>
+        {%endif%}
+
+</div>
+
+
+
+{%endblock%}
