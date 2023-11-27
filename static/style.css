@@ -1,0 +1,222 @@
+.body{
+
+    min-height: 100vh;
+    flex-grow:1;
+  }
+
+.nav-link{
+    color:white;
+}
+.nav-item{
+    margin-left: 7px;
+    margin-right: 7px;
+    font-weight: bold;
+    color: white;
+
+}
+
+.navbar-brand{
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
+
+.container{
+  text-align:center;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+  margin-top:2vw;
+  margin-bottom:2vw;
+  font-family: "Montserrat";
+}
+
+
+
+.imagecont {
+  background-image:url("static/sdg7.jpg");
+  position:relative;
+  margin-bottom:3vw;
+}
+
+.centered {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    top: 40vw;
+    left: 50vw;
+    font-family: "Montserrat";
+  }
+
+.aboutsection{
+  color:white;
+  background-color: rgba(0, 0, 51, .3);
+}
+
+
+.title{
+
+    font-size: 5vw;
+    text-align:center;
+    font-weight:bold;
+
+
+  }
+
+
+#about{
+    padding-left: 2vw;
+    padding-right: 2vw;
+    text-align: justify;
+
+  }
+
+
+#footer{
+  background-color:#3b493a;
+  margin-top: auto;
+  padding-top:0.5rem;
+  padding-left:0.5rem;
+  padding-bottom:0.5rem;
+  padding-right:0.5rem;
+  color: white;
+
+}
+
+.text{
+  padding-top:0.5rem;
+  padding-bottom:0.5rem;
+  padding-left:0.5rem;
+  padding-right:0.5rem;
+  font-size: 2vw;
+  color:white;
+  text-align: justify;
+}
+
+.text-centered{
+  padding-top:0.5rem;
+  padding-bottom:0.5rem;
+  padding-left:0.5rem;
+  padding-right:0.5rem;
+  font-size: 2vw;
+  color:white;
+  text-align: centered;
+}
+
+
+
+#card1{
+  margin-left: 3vw;
+  margin-right: 1vw;
+}
+
+#card2{
+  margin-left: 1vw;
+  margin-right: 2vw;
+}
+
+#card3{
+  margin-left: 1vw;
+  margin-right: 2vw;
+}
+
+.card{
+  border-width: 5px;
+  height:100%;
+}
+
+.card-title{
+  color:#3b493a;
+  font-weight: bold;
+  font-size: 2vw;
+  text-align: center;
+}
+
+.card-text {
+  background-color:rgba(59, 73, 58, .3);
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  text-align: justify;
+  font-size: 90%;
+  overflow-y:auto;
+  max-height: 300px;
+}
+
+.highlight{
+  background-color:rgba(59, 73, 58, .1)
+}
+
+#map{
+  height: 40vw;
+  width:70vw;
+
+}
+
+
+.btn{
+    border: 1px solid #3b493a;
+
+  }
+
+.btn:hover{
+    background-color: rgba(59, 73, 58, .3)
+
+  }
+
+.preds{
+
+    width: 100%;
+    padding-top: 15%;
+  }
+
+.alert{
+    margin-top:2%;
+    margin-bottom:2%;
+  }
+
+.greencont{
+    background-color:#3b493a;
+    color:white;
+    text-align:center;
+    border:20px solid white;
+    border-radius:50px;
+  }
+
+.variables{
+    font-size:1.3vw;
+    border: 4px solid white;
+    border-radius: 90px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+.vargr{
+    border: 4px solid #3b493a;
+    border-radius: 90px;
+  }
+
+.varwh{
+    background-color:#3b493a;
+    color:white;
+    border: 4px solid #3b493a;
+    border-radius: 90px;
+  }
+
+.vargr:hover{
+    background-color: #3b493a;
+    color: white;
+  }
+
+.varwh:hover{
+    background-color: white;
+    color:#3b493a;
+  }
+
+.whitebrd{
+    border:7px dashed #3b493a;
+    border-radius:50px;
+  }
+
+#missing{
+  font-size:2vw;
+}
